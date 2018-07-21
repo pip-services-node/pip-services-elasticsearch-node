@@ -1,0 +1,1 @@
+export { ElasticSearchLogger } from './ElasticSearchLogger';

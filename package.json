@@ -1,0 +1,52 @@
+{
+    "name": "pip-services-elasticsearch-node",
+    "version": "3.0.0",
+    "author": "Conceptual Vision Consulting LLC",
+    "description": "ElasticSearch components for Pip.Services in Node.js",
+    "contributors": [
+        {
+            "name": "Sergey Seroukhov",
+            "email": "seroukhov@gmail.com"
+        }
+    ],
+    "main": "./obj/src/index.js",
+    "typings": "./obj/src/index.d.ts",
+    "keywords": [
+        "pip.services",
+        "microservice",
+        "elasticsearch",
+        "library"
+    ],
+    "noAnalyze": true,
+    "repository": {
+        "type": "git",
+        "url": "ssh://git@github.com:pip-services-node/pip-services-elasticsearch-node.git"
+    },
+    "license": "MIT",
+    "engines": {
+        "node": ">=0.6.14"
+    },
+    "private": false,
+    "scripts": {
+        "build": "tsc",
+        "watch": "tsc --watch",
+        "test": "mocha -t 10000 -R spec -u tdd --recursive ./obj/test",
+        "retest": "tsc && mocha -t 10000 -R spec -u tdd --recursive ./obj/test",
+        "docgen": "typedoc --out doc/api src --mode file --excludeExternals --target ES6 --ignoreCompilerErrors"
+    },
+    "dependencies": {
+        "elasticsearch": "^14.2.1",
+        "pip-services-commons-node": "^3.0.0",
+        "pip-services-components-node": "^3.0.0",
+        "pip-services-rpc-node": "^3.0.0"
+    },
+    "devDependencies": {
+        "@types/async": "^2.0.0",
+        "@types/chai": "*",
+        "@types/lodash": "^4.0.0",
+        "@types/mocha": "*",
+        "@types/node": "*",
+        "chai": "*",
+        "mocha": "*"
+    }
+}
