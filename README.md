@@ -7,8 +7,8 @@ Quick Links:
 
 * [Downloads](https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/master/doc/Downloads.md)
 * [API Reference](https://rawgit.com/pip-services-node/pip-services-elasticsearch-node/master/doc/api/index.html)
-* [Building and Testing](https://github.com/pip-services/pip-services-elasticsearch-node/blob/master/doc/Development.md)
-* [Contributing](https://github.com/pip-services/pip-services-elasticsearch-node/blob/master/doc/Development.md/#contrib)
+* [Building and Testing](https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/master/doc/Development.md)
+* [Contributing](https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/master/doc/Development.md/#contrib)
 
 ## Acknowledgements
 
