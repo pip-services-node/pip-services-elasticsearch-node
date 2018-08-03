@@ -18,7 +18,7 @@ export declare class ElasticSearchLogger extends CachedLogger implements IRefere
     constructor();
     configure(config: ConfigParams): void;
     setReferences(references: IReferences): void;
-    isOpened(): boolean;
+    isOpen(): boolean;
     open(correlationId: string, callback: (err: any) => void): void;
     close(correlationId: string, callback: (err: any) => void): void;
     private getCurrentIndex;

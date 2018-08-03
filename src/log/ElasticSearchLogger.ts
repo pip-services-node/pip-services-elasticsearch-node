@@ -46,12 +46,12 @@ export class ElasticSearchLogger extends CachedLogger implements IReferenceable,
         this._connectionResolver.setReferences(references);
     }
 
-    public isOpened(): boolean {
+    public isOpen(): boolean {
         return this._timer != null;
     }
 
     public open(correlationId: string, callback: (err: any) => void): void {
-        if (this.isOpened()) {
+        if (this.isOpen()) {
             callback(null);
             return;
         }
@@ -175,7 +175,7 @@ export class ElasticSearchLogger extends CachedLogger implements IReferenceable,
     }
 
     protected save(messages: LogMessage[], callback: (err: any) => void): void {
-        if (!this.isOpened()  && messages.length == 0) {
+        if (!this.isOpen()  && messages.length == 0) {
             if (callback) callback(null);
             return;
         }
