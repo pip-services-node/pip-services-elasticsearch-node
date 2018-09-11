@@ -23,7 +23,7 @@ import { LogMessage } from 'pip-services-components-node';
  * - "source" - the logger's source;
  * - __options__
  *     - "options.interval" - the interval after which the cache should be dumped;
- *     -" options.max_cache_size" - set a maximum limit for the cache's size.
+ *     - "options.max_cache_size" - set a maximum limit for the cache's size.
  * 
  * ### References ###
  * 
@@ -62,7 +62,7 @@ export class ElasticSearchLogger extends CachedLogger implements IReferenceable,
      * - "source" - the logger's source;
      * - __options__
      *     - "options.interval" - the interval after which the cache should be dumped;
-     *     -" options.max_cache_size" - set a maximum limit for the cache's size.
+     *     - "options.max_cache_size" - set a maximum limit for the cache's size.
      * 
      * @param config    the configuration parameters to configure this logger with.
      * 
