@@ -32,7 +32,8 @@
         "watch": "tsc --watch",
         "test": "mocha -t 10000 -R spec -u tdd --recursive ./obj/test",
         "retest": "tsc && mocha -t 10000 -R spec -u tdd --recursive ./obj/test",
-        "docgen": "typedoc --out doc/api src --mode file --excludeExternals --target ES6 --ignoreCompilerErrors"
+        "docgen": "typedoc --out doc/api src --mode file --excludeExternals --target ES6 --ignoreCompilerErrors",
+        "docgenmodules": "typedoc --out doc/api src --mode modules --excludeExternals --excludePrivate --target ES6 --ignoreCompilerErrors"
     },
     "dependencies": {
         "elasticsearch": "^14.2.1",
@@ -47,6 +48,8 @@
         "@types/mocha": "*",
         "@types/node": "*",
         "chai": "*",
-        "mocha": "*"
+        "mocha": "*",
+        "typedoc": "^0.11.1",
+        "typedoc-plugin-external-module-name": "^1.1.3"
     }
 }

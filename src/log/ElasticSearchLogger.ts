@@ -1,3 +1,5 @@
+/** @module log */
+/** @hidden */
 let async = require('async');
 
 import { ConfigParams } from 'pip-services-commons-node';
@@ -10,6 +12,27 @@ import { ConfigException } from 'pip-services-commons-node';
 import { CachedLogger } from 'pip-services-components-node';
 import { LogMessage } from 'pip-services-components-node';
 
+/**
+ * Microservice that allows usage of ElasticSearch for finding items in a log.
+ * 
+ * ### Configuration parameters ###
+ * 
+ * Parameters to pass to the [[configure]] method for component configuration:
+ * 
+ * - "level" - the LogLevel to set (default is LogLevel.Info);
+ * - "source" - the logger's source;
+ * - __options__
+ *     - "options.interval" - the interval after which the cache should be dumped;
+ *     -" options.max_cache_size" - set a maximum limit for the cache's size.
+ * 
+ * ### References ###
+ * 
+ * A context and a discovery service can be referenced by passing the 
+ * following references to the object's [[setReferences]] method:
+ * 
+ * - context-info: <code>"\*:context-info:\*:\*:1.0"</code>;
+ * - connection resolver's discovery service: <code>"\*:discovery:\*:\*:1.0"</code>.
+ */
 export class ElasticSearchLogger extends CachedLogger implements IReferenceable, IOpenable {
     private _connectionResolver: HttpConnectionResolver = new HttpConnectionResolver();
     
@@ -24,10 +47,27 @@ export class ElasticSearchLogger extends CachedLogger implements IReferenceable,
 
     private _client: any = null;
 
+    /**
+     * Creates a new ElasticSearchLogger object.
+     */
     public constructor() {
         super();
     }
 
+    /**
+     * Configures this logger using the given configuration parameters.
+     * 
+     * __Configuration parameters:__
+     * - "level" - the LogLevel to set (default is LogLevel.Info);
+     * - "source" - the logger's source;
+     * - __options__
+     *     - "options.interval" - the interval after which the cache should be dumped;
+     *     -" options.max_cache_size" - set a maximum limit for the cache's size.
+     * 
+     * @param config    the configuration parameters to configure this logger with.
+     * 
+     * @see [[https://rawgit.com/pip-services-node/pip-services-commons-node/master/doc/api/classes/config.configparams.html ConfigParams]] (in the PipServices "Commons" package)
+     */
     public configure(config: ConfigParams): void {
         super.configure(config);
 
@@ -41,15 +81,39 @@ export class ElasticSearchLogger extends CachedLogger implements IReferenceable,
         this._indexMessage = config.getAsBooleanWithDefault('options.index_message', this._indexMessage);
     }
 
+    /**
+     * Sets this logger's source and connection resolver by setting references to a 
+     * context and a discovery service.
+     * 
+     * __References:__
+     * - context-info: <code>"\*:context-info:\*:\*:1.0"</code>;
+     * - connection resolver's discovery service: <code>"\*:discovery:\*:\*:1.0"</code>.
+     * 
+     * @param references    an IReferences object, containing references to a context-info 
+     *                      and a discovery service.
+     * 
+     * @see [[https://rawgit.com/pip-services-node/pip-services-commons-node/master/doc/api/interfaces/refer.ireferences.html IReferences]] (in the PipServices "Commons" package)
+     */
     public setReferences(references: IReferences): void {
         super.setReferences(references);
         this._connectionResolver.setReferences(references);
     }
 
+    /**
+     * @returns     whether or not this logger is currently open.
+     */
     public isOpen(): boolean {
         return this._timer != null;
     }
 
+    /**
+     * Opens this ElasticSearchLogger by creating a new ElasticSearch client and starting a 
+     * "dump" timer, if a dump interval was set during configuration.
+     *      
+     * @param correlationId     unique business transaction id to trace calls across components.
+     * @param callback          the function to call once the logger has been opened.
+     *                          Will be called with an error, if one is raised.
+     */
     public open(correlationId: string, callback: (err: any) => void): void {
         if (this.isOpen()) {
             callback(null);
@@ -87,6 +151,16 @@ export class ElasticSearchLogger extends CachedLogger implements IReferenceable,
         });
     }
 
+    /**
+     * Closes this ElasticSearchLogger by saving and resetting its cache and freeing its 
+     * timer and client.
+     * 
+     * @param correlationId     unique business transaction id to trace calls across components.
+     * @param callback          the function to call once the logger has been closed.
+     *                          Will be called with an error, if one is raised.
+     * 
+     * @see [[save]]
+     */
     public close(correlationId: string, callback: (err: any) => void): void {
         this.save(this._cache, (err) => {
             if (this._timer)
@@ -174,6 +248,16 @@ export class ElasticSearchLogger extends CachedLogger implements IReferenceable,
         );
     }
 
+    /**
+     * Used to save this ElasticSearchLogger's cached messages. Saves them using
+     * the ElasticSearch's <code>bulk</code> API (type is set to <code>"log_message"</code>).
+     * 
+     * @param messages  the messages to save.
+     * @param callback  the function to call once the saving process has been 
+     *                  completed. Will be called with an error, if one is raised.
+     * 
+     * @see ElasticSearch's [[https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-bulk.html bulk API]]
+     */
     protected save(messages: LogMessage[], callback: (err: any) => void): void {
         if (!this.isOpen()  && messages.length == 0) {
             if (callback) callback(null);

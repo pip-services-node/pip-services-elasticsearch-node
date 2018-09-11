@@ -54,7 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="elasticsearchlogger.html">ElasticSearchLogger</a>
+					<a href="../modules/log.html">log</a>
+				</li>
+				<li>
+					<a href="log.elasticsearchlogger.html">ElasticSearchLogger</a>
 				</li>
 			</ul>
 			<h1>Class ElasticSearchLogger</h1>
@@ -64,6 +67,31 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Microservice that allows usage of ElasticSearch for finding items in a log.</p>
+					</div>
+					<h3 id="configuration-parameters">Configuration parameters</h3>
+					<p>Parameters to pass to the <a href="log.elasticsearchlogger.html#configure">configure</a> method for component configuration:</p>
+					<ul>
+						<li>&quot;level&quot; - the LogLevel to set (default is LogLevel.Info);</li>
+						<li>&quot;source&quot; - the logger&#39;s source;</li>
+						<li><strong>options</strong><ul>
+								<li>&quot;options.interval&quot; - the interval after which the cache should be dumped;
+								-&quot; options.max_cache_size&quot; - set a maximum limit for the cache&#39;s size.</li>
+							</ul>
+						</li>
+					</ul>
+					<h3 id="references">References</h3>
+					<p>A context and a discovery service can be referenced by passing the
+					following references to the object&#39;s <a href="log.elasticsearchlogger.html#setreferences">setReferences</a> method:</p>
+					<ul>
+						<li>context-info: <code>&quot;*:context-info:*:*:1.0&quot;</code>;</li>
+						<li>connection resolver&#39;s discovery service: <code>&quot;*:discovery:*:*:1.0&quot;</code>.</li>
+					</ul>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -94,59 +122,47 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="elasticsearchlogger.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="log.elasticsearchlogger.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section tsd-is-private-protected">
+						<section class="tsd-index-section tsd-is-inherited tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="elasticsearchlogger.html#_cache" class="tsd-kind-icon">_cache</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="elasticsearchlogger.html#_client" class="tsd-kind-icon">_client</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="elasticsearchlogger.html#_connectionresolver" class="tsd-kind-icon">_connection<wbr>Resolver</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="elasticsearchlogger.html#_currentindex" class="tsd-kind-icon">_current<wbr>Index</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="elasticsearchlogger.html#_dailyindex" class="tsd-kind-icon">_daily<wbr>Index</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="elasticsearchlogger.html#_index" class="tsd-kind-icon">_index</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="elasticsearchlogger.html#_indexmessage" class="tsd-kind-icon">_index<wbr>Message</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="elasticsearchlogger.html#_interval" class="tsd-kind-icon">_interval</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="elasticsearchlogger.html#_lastdumptime" class="tsd-kind-icon">_last<wbr>Dump<wbr>Time</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="elasticsearchlogger.html#_level" class="tsd-kind-icon">_level</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="elasticsearchlogger.html#_maxcachesize" class="tsd-kind-icon">_max<wbr>Cache<wbr>Size</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="elasticsearchlogger.html#_maxretries" class="tsd-kind-icon">_max<wbr>Retries</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="elasticsearchlogger.html#_reconnect" class="tsd-kind-icon">_reconnect</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="elasticsearchlogger.html#_source" class="tsd-kind-icon">_source</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="elasticsearchlogger.html#_timeout" class="tsd-kind-icon">_timeout</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="elasticsearchlogger.html#_timer" class="tsd-kind-icon">_timer</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="elasticsearchlogger.html#_updated" class="tsd-kind-icon">_updated</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="log.elasticsearchlogger.html#_cache" class="tsd-kind-icon">_cache</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="log.elasticsearchlogger.html#_interval" class="tsd-kind-icon">_interval</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="log.elasticsearchlogger.html#_lastdumptime" class="tsd-kind-icon">_last<wbr>Dump<wbr>Time</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="log.elasticsearchlogger.html#_level" class="tsd-kind-icon">_level</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="log.elasticsearchlogger.html#_maxcachesize" class="tsd-kind-icon">_max<wbr>Cache<wbr>Size</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="log.elasticsearchlogger.html#_source" class="tsd-kind-icon">_source</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="log.elasticsearchlogger.html#_updated" class="tsd-kind-icon">_updated</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="elasticsearchlogger.html#clear" class="tsd-kind-icon">clear</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="elasticsearchlogger.html#close" class="tsd-kind-icon">close</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="elasticsearchlogger.html#composeerror" class="tsd-kind-icon">compose<wbr>Error</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="elasticsearchlogger.html#configure" class="tsd-kind-icon">configure</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="elasticsearchlogger.html#createindexifneeded" class="tsd-kind-icon">create<wbr>Index<wbr>IfNeeded</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="elasticsearchlogger.html#debug" class="tsd-kind-icon">debug</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="elasticsearchlogger.html#dump" class="tsd-kind-icon">dump</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="elasticsearchlogger.html#error" class="tsd-kind-icon">error</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="elasticsearchlogger.html#fatal" class="tsd-kind-icon">fatal</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="elasticsearchlogger.html#formatandwrite" class="tsd-kind-icon">format<wbr>And<wbr>Write</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="elasticsearchlogger.html#getcurrentindex" class="tsd-kind-icon">get<wbr>Current<wbr>Index</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="elasticsearchlogger.html#getlevel" class="tsd-kind-icon">get<wbr>Level</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="elasticsearchlogger.html#getsource" class="tsd-kind-icon">get<wbr>Source</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="elasticsearchlogger.html#info" class="tsd-kind-icon">info</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="elasticsearchlogger.html#isopened" class="tsd-kind-icon">is<wbr>Opened</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="elasticsearchlogger.html#log" class="tsd-kind-icon">log</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="elasticsearchlogger.html#open" class="tsd-kind-icon">open</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected"><a href="elasticsearchlogger.html#save" class="tsd-kind-icon">save</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="elasticsearchlogger.html#setlevel" class="tsd-kind-icon">set<wbr>Level</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="elasticsearchlogger.html#setreferences" class="tsd-kind-icon">set<wbr>References</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="elasticsearchlogger.html#setsource" class="tsd-kind-icon">set<wbr>Source</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="elasticsearchlogger.html#trace" class="tsd-kind-icon">trace</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="elasticsearchlogger.html#update" class="tsd-kind-icon">update</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="elasticsearchlogger.html#warn" class="tsd-kind-icon">warn</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-protected"><a href="elasticsearchlogger.html#write" class="tsd-kind-icon">write</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="log.elasticsearchlogger.html#clear" class="tsd-kind-icon">clear</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="log.elasticsearchlogger.html#close" class="tsd-kind-icon">close</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="log.elasticsearchlogger.html#composeerror" class="tsd-kind-icon">compose<wbr>Error</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="log.elasticsearchlogger.html#configure" class="tsd-kind-icon">configure</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="log.elasticsearchlogger.html#debug" class="tsd-kind-icon">debug</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="log.elasticsearchlogger.html#dump" class="tsd-kind-icon">dump</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="log.elasticsearchlogger.html#error" class="tsd-kind-icon">error</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="log.elasticsearchlogger.html#fatal" class="tsd-kind-icon">fatal</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="log.elasticsearchlogger.html#formatandwrite" class="tsd-kind-icon">format<wbr>And<wbr>Write</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="log.elasticsearchlogger.html#getlevel" class="tsd-kind-icon">get<wbr>Level</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="log.elasticsearchlogger.html#getsource" class="tsd-kind-icon">get<wbr>Source</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="log.elasticsearchlogger.html#info" class="tsd-kind-icon">info</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="log.elasticsearchlogger.html#isopen" class="tsd-kind-icon">is<wbr>Open</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="log.elasticsearchlogger.html#log" class="tsd-kind-icon">log</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="log.elasticsearchlogger.html#open" class="tsd-kind-icon">open</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected"><a href="log.elasticsearchlogger.html#save" class="tsd-kind-icon">save</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="log.elasticsearchlogger.html#setlevel" class="tsd-kind-icon">set<wbr>Level</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="log.elasticsearchlogger.html#setreferences" class="tsd-kind-icon">set<wbr>References</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="log.elasticsearchlogger.html#setsource" class="tsd-kind-icon">set<wbr>Source</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="log.elasticsearchlogger.html#trace" class="tsd-kind-icon">trace</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="log.elasticsearchlogger.html#update" class="tsd-kind-icon">update</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="log.elasticsearchlogger.html#warn" class="tsd-kind-icon">warn</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-protected"><a href="log.elasticsearchlogger.html#write" class="tsd-kind-icon">write</a></li>
 							</ul>
 						</section>
 					</div>
@@ -158,22 +174,27 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Elastic<wbr>Search<wbr>Logger<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="elasticsearchlogger.html" class="tsd-signature-type">ElasticSearchLogger</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Elastic<wbr>Search<wbr>Logger<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="log.elasticsearchlogger.html" class="tsd-signature-type">ElasticSearchLogger</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides CachedLogger.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/0b522ed/src/log/ElasticSearchLogger.ts#L25">log/ElasticSearchLogger.ts:25</a></li>
+									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/aaaf28c/src/log/ElasticSearchLogger.ts#L48">log/ElasticSearchLogger.ts:48</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="elasticsearchlogger.html" class="tsd-signature-type">ElasticSearchLogger</a></h4>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a new ElasticSearchLogger object.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="log.elasticsearchlogger.html" class="tsd-signature-type">ElasticSearchLogger</a></h4>
 						</li>
 					</ul>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-private-protected">
+			<section class="tsd-panel-group tsd-member-group tsd-is-inherited tsd-is-private-protected">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
 					<a name="_cache" class="tsd-anchor"></a>
@@ -182,67 +203,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from CachedLogger._cache</p>
 						<ul>
-							<li>Defined in /Users/seroukhov/Projects/pip-services-node-ws/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/CachedLogger.d.ts:6</li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_client" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _client</h3>
-					<div class="tsd-signature tsd-kind-icon">_client<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/0b522ed/src/log/ElasticSearchLogger.ts#L25">log/ElasticSearchLogger.ts:25</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_connectionresolver" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _connection<wbr>Resolver</h3>
-					<div class="tsd-signature tsd-kind-icon">_connection<wbr>Resolver<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">HttpConnectionResolver</span><span class="tsd-signature-symbol"> =&nbsp;new HttpConnectionResolver()</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/0b522ed/src/log/ElasticSearchLogger.ts#L14">log/ElasticSearchLogger.ts:14</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_currentindex" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _current<wbr>Index</h3>
-					<div class="tsd-signature tsd-kind-icon">_current<wbr>Index<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/0b522ed/src/log/ElasticSearchLogger.ts#L19">log/ElasticSearchLogger.ts:19</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_dailyindex" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _daily<wbr>Index</h3>
-					<div class="tsd-signature tsd-kind-icon">_daily<wbr>Index<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/0b522ed/src/log/ElasticSearchLogger.ts#L18">log/ElasticSearchLogger.ts:18</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_index" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _index</h3>
-					<div class="tsd-signature tsd-kind-icon">_index<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;log&quot;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/0b522ed/src/log/ElasticSearchLogger.ts#L17">log/ElasticSearchLogger.ts:17</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_indexmessage" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _index<wbr>Message</h3>
-					<div class="tsd-signature tsd-kind-icon">_index<wbr>Message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/0b522ed/src/log/ElasticSearchLogger.ts#L23">log/ElasticSearchLogger.ts:23</a></li>
+							<li>Defined in /Users/mac/PipServices/PipServices v3.0/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/CachedLogger.d.ts:14</li>
 						</ul>
 					</aside>
 				</section>
@@ -253,7 +214,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from CachedLogger._interval</p>
 						<ul>
-							<li>Defined in /Users/seroukhov/Projects/pip-services-node-ws/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/CachedLogger.d.ts:10</li>
+							<li>Defined in /Users/mac/PipServices/PipServices v3.0/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/CachedLogger.d.ts:18</li>
 						</ul>
 					</aside>
 				</section>
@@ -264,7 +225,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from CachedLogger._lastDumpTime</p>
 						<ul>
-							<li>Defined in /Users/seroukhov/Projects/pip-services-node-ws/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/CachedLogger.d.ts:8</li>
+							<li>Defined in /Users/mac/PipServices/PipServices v3.0/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/CachedLogger.d.ts:16</li>
 						</ul>
 					</aside>
 				</section>
@@ -275,7 +236,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from Logger._level</p>
 						<ul>
-							<li>Defined in /Users/seroukhov/Projects/pip-services-node-ws/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/Logger.d.ts:8</li>
+							<li>Defined in /Users/mac/PipServices/PipServices v3.0/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/Logger.d.ts:16</li>
 						</ul>
 					</aside>
 				</section>
@@ -286,27 +247,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from CachedLogger._maxCacheSize</p>
 						<ul>
-							<li>Defined in /Users/seroukhov/Projects/pip-services-node-ws/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/CachedLogger.d.ts:9</li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_maxretries" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _max<wbr>Retries</h3>
-					<div class="tsd-signature tsd-kind-icon">_max<wbr>Retries<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;3</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/0b522ed/src/log/ElasticSearchLogger.ts#L22">log/ElasticSearchLogger.ts:22</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_reconnect" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _reconnect</h3>
-					<div class="tsd-signature tsd-kind-icon">_reconnect<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;60000</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/0b522ed/src/log/ElasticSearchLogger.ts#L20">log/ElasticSearchLogger.ts:20</a></li>
+							<li>Defined in /Users/mac/PipServices/PipServices v3.0/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/CachedLogger.d.ts:17</li>
 						</ul>
 					</aside>
 				</section>
@@ -317,27 +258,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from Logger._source</p>
 						<ul>
-							<li>Defined in /Users/seroukhov/Projects/pip-services-node-ws/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/Logger.d.ts:9</li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_timeout" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _timeout</h3>
-					<div class="tsd-signature tsd-kind-icon">_timeout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;30000</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/0b522ed/src/log/ElasticSearchLogger.ts#L21">log/ElasticSearchLogger.ts:21</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_timer" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _timer</h3>
-					<div class="tsd-signature tsd-kind-icon">_timer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/0b522ed/src/log/ElasticSearchLogger.ts#L16">log/ElasticSearchLogger.ts:16</a></li>
+							<li>Defined in /Users/mac/PipServices/PipServices v3.0/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/Logger.d.ts:17</li>
 						</ul>
 					</aside>
 				</section>
@@ -348,7 +269,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from CachedLogger._updated</p>
 						<ul>
-							<li>Defined in /Users/seroukhov/Projects/pip-services-node-ws/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/CachedLogger.d.ts:7</li>
+							<li>Defined in /Users/mac/PipServices/PipServices v3.0/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/CachedLogger.d.ts:15</li>
 						</ul>
 					</aside>
 				</section>
@@ -366,9 +287,14 @@
 							<aside class="tsd-sources">
 								<p>Inherited from CachedLogger.clear</p>
 								<ul>
-									<li>Defined in /Users/seroukhov/Projects/pip-services-node-ws/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/CachedLogger.d.ts:15</li>
+									<li>Defined in /Users/mac/PipServices/PipServices v3.0/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/CachedLogger.d.ts:62</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Removes all [[LogMessage LogMessages]] from this object&#39;s cache.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -383,16 +309,34 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/0b522ed/src/log/ElasticSearchLogger.ts#L90">log/ElasticSearchLogger.ts:90</a></li>
+									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/aaaf28c/src/log/ElasticSearchLogger.ts#L164">log/ElasticSearchLogger.ts:164</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Closes this ElasticSearchLogger by saving and resetting its cache and freeing its
+									timer and client.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="log.elasticsearchlogger.html#save">save</a></p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>correlationId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>unique business transaction id to trace calls across components.</p>
+									</div>
 								</li>
 								<li>
 									<h5>callback: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the function to call once the logger has been closed.
+										Will be called with an error, if one is raised.</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
@@ -428,16 +372,26 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Logger.composeError</p>
 								<ul>
-									<li>Defined in /Users/seroukhov/Projects/pip-services-node-ws/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/Logger.d.ts:26</li>
+									<li>Defined in /Users/mac/PipServices/PipServices v3.0/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/Logger.d.ts:188</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Composes an Error string, which can be used in a log entry.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>error: <span class="tsd-signature-type">Error</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the Error to compose a string with.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>the string created using the information from the Error. Example error string:
+							&quot;&lt;error&#39;s message&gt; StackTrace: &lt;error&#39;s stack&gt;&quot;</p>
 						</li>
 					</ul>
 				</section>
@@ -452,60 +406,36 @@
 							<aside class="tsd-sources">
 								<p>Overrides CachedLogger.configure</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/0b522ed/src/log/ElasticSearchLogger.ts#L31">log/ElasticSearchLogger.ts:31</a></li>
+									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/aaaf28c/src/log/ElasticSearchLogger.ts#L71">log/ElasticSearchLogger.ts:71</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Configures this logger using the given configuration parameters.</p>
+								</div>
+								<p><strong>Configuration parameters:</strong></p>
+								<ul>
+									<li>&quot;level&quot; - the LogLevel to set (default is LogLevel.Info);</li>
+									<li>&quot;source&quot; - the logger&#39;s source;</li>
+									<li><strong>options</strong><ul>
+											<li>&quot;options.interval&quot; - the interval after which the cache should be dumped;
+											-&quot; options.max_cache_size&quot; - set a maximum limit for the cache&#39;s size.</li>
+										</ul>
+									</li>
+								</ul>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://rawgit.com/pip-services-node/pip-services-commons-node/master/doc/api/classes/config.configparams.html" class="external">ConfigParams</a> (in the PipServices &quot;Commons&quot; package)</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>config: <span class="tsd-signature-type">ConfigParams</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="createindexifneeded" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> create<wbr>Index<wbr>IfNeeded</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Index<wbr>IfNeeded<span class="tsd-signature-symbol">(</span>correlationId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, force<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/0b522ed/src/log/ElasticSearchLogger.ts#L115">log/ElasticSearchLogger.ts:115</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>correlationId: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>force: <span class="tsd-signature-type">boolean</span></h5>
-								</li>
-								<li>
-									<h5>callback: <span class="tsd-signature-type">function</span></h5>
-									<ul class="tsd-parameters">
-										<li class="tsd-parameter-siganture">
-											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>err<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-											</ul>
-											<ul class="tsd-descriptions">
-												<li class="tsd-description">
-													<h4 class="tsd-parameters-title">Parameters</h4>
-													<ul class="tsd-parameters">
-														<li>
-															<h5>err: <span class="tsd-signature-type">any</span></h5>
-														</li>
-													</ul>
-													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-												</li>
-											</ul>
-										</li>
-									</ul>
+									<div class="tsd-comment tsd-typography">
+										<p>the configuration parameters to configure this logger with.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -523,19 +453,42 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Logger.debug</p>
 								<ul>
-									<li>Defined in /Users/seroukhov/Projects/pip-services-node-ws/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/Logger.d.ts:24</li>
+									<li>Defined in /Users/mac/PipServices/PipServices v3.0/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/Logger.d.ts:168</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Logs a message using the [[LogLevel.Debug debug]] log level. Calls this class&#39;s <a href="log.elasticsearchlogger.html#formatandwrite">formatAndWrite</a>
+									method with level set to [[LogLevel.Debug]].</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="log.elasticsearchlogger.html#formatandwrite">formatAndWrite</a></p>
+									</dd>
+									<dt>see</dt>
+									<dd><p>[[LogLevel]]</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>correlationId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>unique business transaction id to trace calls across components.</p>
+									</div>
 								</li>
 								<li>
 									<h5>message: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the message to log as debug or the format string to use for formatting.</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the arguments to format <code>message</code> with if it is a format string.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -553,9 +506,20 @@
 							<aside class="tsd-sources">
 								<p>Inherited from CachedLogger.dump</p>
 								<ul>
-									<li>Defined in /Users/seroukhov/Projects/pip-services-node-ws/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/CachedLogger.d.ts:16</li>
+									<li>Defined in /Users/mac/PipServices/PipServices v3.0/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/CachedLogger.d.ts:69</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Dumps the [[LogMessage LogMessages]] that are stored in this object&#39;s
+									cache to memory.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="log.elasticsearchlogger.html#save">save</a></p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -571,22 +535,48 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Logger.error</p>
 								<ul>
-									<li>Defined in /Users/seroukhov/Projects/pip-services-node-ws/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/Logger.d.ts:21</li>
+									<li>Defined in /Users/mac/PipServices/PipServices v3.0/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/Logger.d.ts:132</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Logs a message using the [[LogLevel.Error error]] log level. Calls this class&#39;s <a href="log.elasticsearchlogger.html#formatandwrite">formatAndWrite</a>
+									method with level set to [[LogLevel.Error]].</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="log.elasticsearchlogger.html#formatandwrite">formatAndWrite</a></p>
+									</dd>
+									<dt>see</dt>
+									<dd><p>[[LogLevel]]</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>correlationId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>unique business transaction id to trace calls across components.</p>
+									</div>
 								</li>
 								<li>
 									<h5>error: <span class="tsd-signature-type">Error</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the Error to include in the log entry.</p>
+									</div>
 								</li>
 								<li>
 									<h5>message: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the message to log as error or the format string to use for formatting.</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the arguments to format <code>message</code> with if it is a format string.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -604,22 +594,48 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Logger.fatal</p>
 								<ul>
-									<li>Defined in /Users/seroukhov/Projects/pip-services-node-ws/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/Logger.d.ts:20</li>
+									<li>Defined in /Users/mac/PipServices/PipServices v3.0/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/Logger.d.ts:119</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Logs a message using the [[LogLevel.Fatal fatal]] log level. Calls this class&#39;s <a href="log.elasticsearchlogger.html#formatandwrite">formatAndWrite</a>
+									method with level set to [[LogLevel.Fatal]].</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="log.elasticsearchlogger.html#formatandwrite">formatAndWrite</a></p>
+									</dd>
+									<dt>see</dt>
+									<dd><p>[[LogLevel]]</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>correlationId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>unique business transaction id to trace calls across components.</p>
+									</div>
 								</li>
 								<li>
 									<h5>error: <span class="tsd-signature-type">Error</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the Error to include in the log entry.</p>
+									</div>
 								</li>
 								<li>
 									<h5>message: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the message to log as fatal or the format string to use for formatting.</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the arguments to format <code>message</code> with if it is a format string.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -637,45 +653,57 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Logger.formatAndWrite</p>
 								<ul>
-									<li>Defined in /Users/seroukhov/Projects/pip-services-node-ws/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/Logger.d.ts:18</li>
+									<li>Defined in /Users/mac/PipServices/PipServices v3.0/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/Logger.d.ts:93</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>If <code>message</code> is a <code>printf</code>-like format string, then this method formats it
+									using the provided arguments and calls <a href="log.elasticsearchlogger.html#write">write</a> with the newly formatted string.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p>[[LogLevel]]</p>
+									</dd>
+									<dt>see</dt>
+									<dd><p><a href="log.elasticsearchlogger.html#write">write</a></p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>level: <span class="tsd-signature-type">LogLevel</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the LogLevel to use.</p>
+									</div>
 								</li>
 								<li>
 									<h5>correlationId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>unique business transaction id to trace calls across components.</p>
+									</div>
 								</li>
 								<li>
 									<h5>error: <span class="tsd-signature-type">Error</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the Error to include in the log entry for fatal and error logs.</p>
+									</div>
 								</li>
 								<li>
 									<h5>message: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the message to log or the format string to use for formatting.</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the arguments to format <code>message</code> with.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="getcurrentindex" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>Current<wbr>Index</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Current<wbr>Index<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/0b522ed/src/log/ElasticSearchLogger.ts#L103">log/ElasticSearchLogger.ts:103</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -690,10 +718,21 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Logger.getLevel</p>
 								<ul>
-									<li>Defined in /Users/seroukhov/Projects/pip-services-node-ws/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/Logger.d.ts:13</li>
+									<li>Defined in /Users/mac/PipServices/PipServices v3.0/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/Logger.d.ts:49</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Retrieves the [[LogLevel]] that is currently set.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p>[[LogLevel]]</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">LogLevel</span></h4>
+							<p>this logger&#39;s LogLevel.</p>
 						</li>
 					</ul>
 				</section>
@@ -708,10 +747,16 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Logger.getSource</p>
 								<ul>
-									<li>Defined in /Users/seroukhov/Projects/pip-services-node-ws/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/Logger.d.ts:15</li>
+									<li>Defined in /Users/mac/PipServices/PipServices v3.0/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/Logger.d.ts:63</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Retrieves the source (context) for which this logger is logging.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>this logger&#39;s source (context).</p>
 						</li>
 					</ul>
 				</section>
@@ -726,19 +771,42 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Logger.info</p>
 								<ul>
-									<li>Defined in /Users/seroukhov/Projects/pip-services-node-ws/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/Logger.d.ts:23</li>
+									<li>Defined in /Users/mac/PipServices/PipServices v3.0/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/Logger.d.ts:156</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Logs a message using the [[LogLevel.Info info]] log level. Calls this class&#39;s <a href="log.elasticsearchlogger.html#formatandwrite">formatAndWrite</a>
+									method with level set to [[LogLevel.Info]].</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="log.elasticsearchlogger.html#formatandwrite">formatAndWrite</a></p>
+									</dd>
+									<dt>see</dt>
+									<dd><p>[[LogLevel]]</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>correlationId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>unique business transaction id to trace calls across components.</p>
+									</div>
 								</li>
 								<li>
 									<h5>message: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the message to log as info or the format string to use for formatting.</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the arguments to format <code>message</code> with if it is a format string.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -746,19 +814,22 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="isopened" class="tsd-anchor"></a>
-					<h3>is<wbr>Opened</h3>
+					<a name="isopen" class="tsd-anchor"></a>
+					<h3>is<wbr>Open</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">is<wbr>Opened<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Open<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/0b522ed/src/log/ElasticSearchLogger.ts#L49">log/ElasticSearchLogger.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/aaaf28c/src/log/ElasticSearchLogger.ts#L105">log/ElasticSearchLogger.ts:105</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>whether or not this logger is currently open.</p>
 						</li>
 					</ul>
 				</section>
@@ -773,25 +844,51 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Logger.log</p>
 								<ul>
-									<li>Defined in /Users/seroukhov/Projects/pip-services-node-ws/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/Logger.d.ts:19</li>
+									<li>Defined in /Users/mac/PipServices/PipServices v3.0/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/Logger.d.ts:106</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Logs a message using the given [[LogLevel]] and parameters. Uses this class&#39;s <a href="log.elasticsearchlogger.html#formatandwrite">formatAndWrite</a>
+									method.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="log.elasticsearchlogger.html#formatandwrite">formatAndWrite</a></p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>level: <span class="tsd-signature-type">LogLevel</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the LogLevel to use.</p>
+									</div>
 								</li>
 								<li>
 									<h5>correlationId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>unique business transaction id to trace calls across components.</p>
+									</div>
 								</li>
 								<li>
 									<h5>error: <span class="tsd-signature-type">Error</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the Error to include in the log entry for fatal and error logs.</p>
+									</div>
 								</li>
 								<li>
 									<h5>message: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the message to log or the format string to use for formatting.</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the arguments to format <code>message</code> with if it is a format string.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -808,16 +905,29 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/0b522ed/src/log/ElasticSearchLogger.ts#L53">log/ElasticSearchLogger.ts:53</a></li>
+									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/aaaf28c/src/log/ElasticSearchLogger.ts#L117">log/ElasticSearchLogger.ts:117</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Opens this ElasticSearchLogger by creating a new ElasticSearch client and starting a
+									&quot;dump&quot; timer, if a dump interval was set during configuration.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>correlationId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>unique business transaction id to trace calls across components.</p>
+									</div>
 								</li>
 								<li>
 									<h5>callback: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the function to call once the logger has been opened.
+										Will be called with an error, if one is raised.</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
@@ -853,16 +963,34 @@
 							<aside class="tsd-sources">
 								<p>Overrides CachedLogger.save</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/0b522ed/src/log/ElasticSearchLogger.ts#L177">log/ElasticSearchLogger.ts:177</a></li>
+									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/aaaf28c/src/log/ElasticSearchLogger.ts#L261">log/ElasticSearchLogger.ts:261</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Used to save this ElasticSearchLogger&#39;s cached messages. Saves them using
+									the ElasticSearch&#39;s <code>bulk</code> API (type is set to <code>&quot;log_message&quot;</code>).</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p>ElasticSearch&#39;s <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-bulk.html" class="external">bulk API</a></p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>messages: <span class="tsd-signature-type">LogMessage</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the messages to save.</p>
+									</div>
 								</li>
 								<li>
 									<h5>callback: <span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the function to call once the saving process has been
+										completed. Will be called with an error, if one is raised.</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
 											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
@@ -898,13 +1026,26 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Logger.setLevel</p>
 								<ul>
-									<li>Defined in /Users/seroukhov/Projects/pip-services-node-ws/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/Logger.d.ts:14</li>
+									<li>Defined in /Users/mac/PipServices/PipServices v3.0/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/Logger.d.ts:57</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets this logger&#39;s [[LogLevel]].</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p>[[LogLevel]]</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>value: <span class="tsd-signature-type">LogLevel</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the LogLevel to set this logger to.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -922,13 +1063,33 @@
 							<aside class="tsd-sources">
 								<p>Overrides Logger.setReferences</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/0b522ed/src/log/ElasticSearchLogger.ts#L44">log/ElasticSearchLogger.ts:44</a></li>
+									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/aaaf28c/src/log/ElasticSearchLogger.ts#L97">log/ElasticSearchLogger.ts:97</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets this logger&#39;s source and connection resolver by setting references to a
+									context and a discovery service.</p>
+								</div>
+								<p><strong>References:</strong></p>
+								<ul>
+									<li>context-info: <code>&quot;*:context-info:*:*:1.0&quot;</code>;</li>
+									<li>connection resolver&#39;s discovery service: <code>&quot;*:discovery:*:*:1.0&quot;</code>.</li>
+								</ul>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://rawgit.com/pip-services-node/pip-services-commons-node/master/doc/api/interfaces/refer.ireferences.html" class="external">IReferences</a> (in the PipServices &quot;Commons&quot; package)</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>references: <span class="tsd-signature-type">IReferences</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>an IReferences object, containing references to a context-info
+										and a discovery service.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -946,13 +1107,21 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Logger.setSource</p>
 								<ul>
-									<li>Defined in /Users/seroukhov/Projects/pip-services-node-ws/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/Logger.d.ts:16</li>
+									<li>Defined in /Users/mac/PipServices/PipServices v3.0/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/Logger.d.ts:69</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets the source (context) for which this logger will be logging.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>value: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the source (context) to set.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -970,19 +1139,42 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Logger.trace</p>
 								<ul>
-									<li>Defined in /Users/seroukhov/Projects/pip-services-node-ws/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/Logger.d.ts:25</li>
+									<li>Defined in /Users/mac/PipServices/PipServices v3.0/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/Logger.d.ts:180</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Logs a message using the [[LogLevel.Trace trace]] log level. Calls this class&#39;s <a href="log.elasticsearchlogger.html#formatandwrite">formatAndWrite</a>
+									method with level set to [[LogLevel.Trace]].</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="log.elasticsearchlogger.html#formatandwrite">formatAndWrite</a></p>
+									</dd>
+									<dt>see</dt>
+									<dd><p>[[LogLevel]]</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>correlationId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>unique business transaction id to trace calls across components.</p>
+									</div>
 								</li>
 								<li>
 									<h5>message: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the message to log as trace or the format string to use for formatting.</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the arguments to format <code>message</code> with if it is a format string.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1000,9 +1192,20 @@
 							<aside class="tsd-sources">
 								<p>Inherited from CachedLogger.update</p>
 								<ul>
-									<li>Defined in /Users/seroukhov/Projects/pip-services-node-ws/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/CachedLogger.d.ts:17</li>
+									<li>Defined in /Users/mac/PipServices/PipServices v3.0/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/CachedLogger.d.ts:76</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Checks whether or not the update interval has passed (since the last
+									<a href="log.elasticsearchlogger.html#dump">dump</a> was performed) and, if it has, performs a <a href="log.elasticsearchlogger.html#dump">dump</a>.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="log.elasticsearchlogger.html#dump">dump</a></p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -1018,19 +1221,42 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Logger.warn</p>
 								<ul>
-									<li>Defined in /Users/seroukhov/Projects/pip-services-node-ws/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/Logger.d.ts:22</li>
+									<li>Defined in /Users/mac/PipServices/PipServices v3.0/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/Logger.d.ts:144</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Logs a message using the [[LogLevel.Warn warn]] log level. Calls this class&#39;s <a href="log.elasticsearchlogger.html#formatandwrite">formatAndWrite</a>
+									method with level set to [[LogLevel.Warn]].</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="log.elasticsearchlogger.html#formatandwrite">formatAndWrite</a></p>
+									</dd>
+									<dt>see</dt>
+									<dd><p>[[LogLevel]]</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>correlationId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>unique business transaction id to trace calls across components.</p>
+									</div>
 								</li>
 								<li>
 									<h5>message: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the message to log as warn or the format string to use for formatting.</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the arguments to format <code>message</code> with if it is a format string.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1049,22 +1275,49 @@
 								<p>Inherited from CachedLogger.write</p>
 								<p>Overrides Logger.write</p>
 								<ul>
-									<li>Defined in /Users/seroukhov/Projects/pip-services-node-ws/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/CachedLogger.d.ts:12</li>
+									<li>Defined in /Users/mac/PipServices/PipServices v3.0/pip-services-elasticsearch-node/node_modules/pip-services-components-node/obj/src/log/CachedLogger.d.ts:36</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Writes a [[LogMessage]] to the cache using the provided level, correlation id, error, and message.
+										The [[LogMessage LogMessage&#39;s]] time and source will be set to the current time and this logger&#39;s
+									source, respectively.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p>[[LogMessage]]</p>
+									</dd>
+									<dt>see</dt>
+									<dd><p>[[LogLevel]]</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>level: <span class="tsd-signature-type">LogLevel</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the [[LogLevel]] of the log entry.</p>
+									</div>
 								</li>
 								<li>
 									<h5>correlationId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>unique business transaction id to trace calls across components.</p>
+									</div>
 								</li>
 								<li>
 									<h5>ex: <span class="tsd-signature-type">Error</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the Exception (Error) to include in the log entry.</p>
+									</div>
 								</li>
 								<li>
 									<h5>message: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the message to log.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1079,154 +1332,121 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/build.html">build</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/index.html">index</a>
+					</li>
+					<li class="current tsd-kind-external-module">
+						<a href="../modules/log.html">log</a>
+					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class">
-						<a href="defaultelasticsearchfactory.html" class="tsd-kind-icon">Default<wbr>Elastic<wbr>Search<wbr>Factory</a>
-					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class">
-						<a href="elasticsearchlogger.html" class="tsd-kind-icon">Elastic<wbr>Search<wbr>Logger</a>
+					<li class="current tsd-kind-class tsd-parent-kind-external-module">
+						<a href="log.elasticsearchlogger.html" class="tsd-kind-icon">Elastic<wbr>Search<wbr>Logger</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-								<a href="elasticsearchlogger.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="log.elasticsearchlogger.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-								<a href="elasticsearchlogger.html#_cache" class="tsd-kind-icon">_cache</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="elasticsearchlogger.html#_client" class="tsd-kind-icon">_client</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="elasticsearchlogger.html#_connectionresolver" class="tsd-kind-icon">_connection<wbr>Resolver</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="elasticsearchlogger.html#_currentindex" class="tsd-kind-icon">_current<wbr>Index</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="elasticsearchlogger.html#_dailyindex" class="tsd-kind-icon">_daily<wbr>Index</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="elasticsearchlogger.html#_index" class="tsd-kind-icon">_index</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="elasticsearchlogger.html#_indexmessage" class="tsd-kind-icon">_index<wbr>Message</a>
+								<a href="log.elasticsearchlogger.html#_cache" class="tsd-kind-icon">_cache</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-								<a href="elasticsearchlogger.html#_interval" class="tsd-kind-icon">_interval</a>
+								<a href="log.elasticsearchlogger.html#_interval" class="tsd-kind-icon">_interval</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-								<a href="elasticsearchlogger.html#_lastdumptime" class="tsd-kind-icon">_last<wbr>Dump<wbr>Time</a>
+								<a href="log.elasticsearchlogger.html#_lastdumptime" class="tsd-kind-icon">_last<wbr>Dump<wbr>Time</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-								<a href="elasticsearchlogger.html#_level" class="tsd-kind-icon">_level</a>
+								<a href="log.elasticsearchlogger.html#_level" class="tsd-kind-icon">_level</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-								<a href="elasticsearchlogger.html#_maxcachesize" class="tsd-kind-icon">_max<wbr>Cache<wbr>Size</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="elasticsearchlogger.html#_maxretries" class="tsd-kind-icon">_max<wbr>Retries</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="elasticsearchlogger.html#_reconnect" class="tsd-kind-icon">_reconnect</a>
+								<a href="log.elasticsearchlogger.html#_maxcachesize" class="tsd-kind-icon">_max<wbr>Cache<wbr>Size</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-								<a href="elasticsearchlogger.html#_source" class="tsd-kind-icon">_source</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="elasticsearchlogger.html#_timeout" class="tsd-kind-icon">_timeout</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="elasticsearchlogger.html#_timer" class="tsd-kind-icon">_timer</a>
+								<a href="log.elasticsearchlogger.html#_source" class="tsd-kind-icon">_source</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-								<a href="elasticsearchlogger.html#_updated" class="tsd-kind-icon">_updated</a>
+								<a href="log.elasticsearchlogger.html#_updated" class="tsd-kind-icon">_updated</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="elasticsearchlogger.html#clear" class="tsd-kind-icon">clear</a>
+								<a href="log.elasticsearchlogger.html#clear" class="tsd-kind-icon">clear</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="elasticsearchlogger.html#close" class="tsd-kind-icon">close</a>
+								<a href="log.elasticsearchlogger.html#close" class="tsd-kind-icon">close</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-								<a href="elasticsearchlogger.html#composeerror" class="tsd-kind-icon">compose<wbr>Error</a>
+								<a href="log.elasticsearchlogger.html#composeerror" class="tsd-kind-icon">compose<wbr>Error</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-								<a href="elasticsearchlogger.html#configure" class="tsd-kind-icon">configure</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="elasticsearchlogger.html#createindexifneeded" class="tsd-kind-icon">create<wbr>Index<wbr>IfNeeded</a>
+								<a href="log.elasticsearchlogger.html#configure" class="tsd-kind-icon">configure</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="elasticsearchlogger.html#debug" class="tsd-kind-icon">debug</a>
+								<a href="log.elasticsearchlogger.html#debug" class="tsd-kind-icon">debug</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="elasticsearchlogger.html#dump" class="tsd-kind-icon">dump</a>
+								<a href="log.elasticsearchlogger.html#dump" class="tsd-kind-icon">dump</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="elasticsearchlogger.html#error" class="tsd-kind-icon">error</a>
+								<a href="log.elasticsearchlogger.html#error" class="tsd-kind-icon">error</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="elasticsearchlogger.html#fatal" class="tsd-kind-icon">fatal</a>
+								<a href="log.elasticsearchlogger.html#fatal" class="tsd-kind-icon">fatal</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-								<a href="elasticsearchlogger.html#formatandwrite" class="tsd-kind-icon">format<wbr>And<wbr>Write</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="elasticsearchlogger.html#getcurrentindex" class="tsd-kind-icon">get<wbr>Current<wbr>Index</a>
+								<a href="log.elasticsearchlogger.html#formatandwrite" class="tsd-kind-icon">format<wbr>And<wbr>Write</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="elasticsearchlogger.html#getlevel" class="tsd-kind-icon">get<wbr>Level</a>
+								<a href="log.elasticsearchlogger.html#getlevel" class="tsd-kind-icon">get<wbr>Level</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="elasticsearchlogger.html#getsource" class="tsd-kind-icon">get<wbr>Source</a>
+								<a href="log.elasticsearchlogger.html#getsource" class="tsd-kind-icon">get<wbr>Source</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="elasticsearchlogger.html#info" class="tsd-kind-icon">info</a>
+								<a href="log.elasticsearchlogger.html#info" class="tsd-kind-icon">info</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="elasticsearchlogger.html#isopened" class="tsd-kind-icon">is<wbr>Opened</a>
+								<a href="log.elasticsearchlogger.html#isopen" class="tsd-kind-icon">is<wbr>Open</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="elasticsearchlogger.html#log" class="tsd-kind-icon">log</a>
+								<a href="log.elasticsearchlogger.html#log" class="tsd-kind-icon">log</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="elasticsearchlogger.html#open" class="tsd-kind-icon">open</a>
+								<a href="log.elasticsearchlogger.html#open" class="tsd-kind-icon">open</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
-								<a href="elasticsearchlogger.html#save" class="tsd-kind-icon">save</a>
+								<a href="log.elasticsearchlogger.html#save" class="tsd-kind-icon">save</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="elasticsearchlogger.html#setlevel" class="tsd-kind-icon">set<wbr>Level</a>
+								<a href="log.elasticsearchlogger.html#setlevel" class="tsd-kind-icon">set<wbr>Level</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-								<a href="elasticsearchlogger.html#setreferences" class="tsd-kind-icon">set<wbr>References</a>
+								<a href="log.elasticsearchlogger.html#setreferences" class="tsd-kind-icon">set<wbr>References</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="elasticsearchlogger.html#setsource" class="tsd-kind-icon">set<wbr>Source</a>
+								<a href="log.elasticsearchlogger.html#setsource" class="tsd-kind-icon">set<wbr>Source</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="elasticsearchlogger.html#trace" class="tsd-kind-icon">trace</a>
+								<a href="log.elasticsearchlogger.html#trace" class="tsd-kind-icon">trace</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-								<a href="elasticsearchlogger.html#update" class="tsd-kind-icon">update</a>
+								<a href="log.elasticsearchlogger.html#update" class="tsd-kind-icon">update</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="elasticsearchlogger.html#warn" class="tsd-kind-icon">warn</a>
+								<a href="log.elasticsearchlogger.html#warn" class="tsd-kind-icon">warn</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-protected">
-								<a href="elasticsearchlogger.html#write" class="tsd-kind-icon">write</a>
+								<a href="log.elasticsearchlogger.html#write" class="tsd-kind-icon">write</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="../globals.html#async" class="tsd-kind-icon">async</a>
-					</li>
 				</ul>
 			</nav>
 		</div>
