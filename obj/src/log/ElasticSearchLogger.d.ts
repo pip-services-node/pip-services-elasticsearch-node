@@ -7,6 +7,10 @@ import { LogMessage } from 'pip-services-components-node';
 /**
  * Logger that dumps execution logs to ElasticSearch service.
  *
+ * ElasticSearch is a popular search index. It is often used
+ * to store and index execution logs by itself or as a part of
+ * ELK (ElasticSearch - Logstash - Kibana) stack.
+ *
  * Authentication is not supported in this version.
  *
  * ### Configuration parameters ###
@@ -36,7 +40,7 @@ import { LogMessage } from 'pip-services-components-node';
  *
  * ### Example ###
  *
- * let logger = new ConsoleLogger();
+ * let logger = new ElasticSearchLogger();
  * logger.configure(ConfigParams.fromTuples(
  *     "connection.protocol", "http",
  *     "connection.host", "localhost",
