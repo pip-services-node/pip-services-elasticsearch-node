@@ -13,25 +13,51 @@ import { CachedLogger } from 'pip-services-components-node';
 import { LogMessage } from 'pip-services-components-node';
 
 /**
- * Microservice that allows usage of ElasticSearch for finding items in a log.
+ * Logger that dumps execution logs to ElasticSearch service.
+ * 
+ * Authentication is not supported in this version.
  * 
  * ### Configuration parameters ###
  * 
- * Parameters to pass to the [[configure]] method for component configuration:
- * 
- * - "level" - the LogLevel to set (default is LogLevel.Info);
- * - "source" - the logger's source;
- * - __options__
- *     - "options.interval" - the interval after which the cache should be dumped;
- *     - "options.max_cache_size" - set a maximum limit for the cache's size.
+ * level:             maximum log level to capture
+ * source:            source (context) name
+ * connection(s):           
+ *   discovery_key:         (optional) a key to retrieve the connection from [[IDiscovery]]
+ *   protocol:              connection protocol: http or https
+ *   host:                  host name or IP address
+ *   port:                  port number
+ *   uri:                   resource URI or connection string with all parameters in it
+ * options:
+ *   interval:        interval in milliseconds to save log messages (default: 10 seconds)
+ *   max_cache_size:  maximum number of messages stored in this cache (default: 100)        
+ *   index:           ElasticSearch index name (default: "log")
+ *   daily:           true to create a new index every day by adding date suffix to the index name (default: false)
+ *   reconnect:       reconnect timeout in milliseconds (default: 60 sec)
+ *   timeout:         invocation timeout in milliseconds (default: 30 sec)
+ *   max_retries:     maximum number of retries (default: 3)
+ *   index_message:   true to enable indexing for message object (default: false)
  * 
  * ### References ###
  * 
- * A context and a discovery service can be referenced by passing the 
- * following references to the object's [[setReferences]] method:
+ * - *:context-info:*:*:1.0     (optional) [[ContextInfo]] to detect the context id and specify counters source
+ * - *:discovery:*:*:1.0        (optional) IDiscovery services to resolve connection
  * 
- * - context-info: <code>"\*:context-info:\*:\*:1.0"</code>;
- * - connection resolver's discovery service: <code>"\*:discovery:\*:\*:1.0"</code>.
+ * ### Example ###
+ * 
+ * let logger = new ConsoleLogger();
+ * logger.configure(ConfigParams.fromTuples(
+ *     "connection.protocol", "http",
+ *     "connection.host", "localhost",
+ *     "connection.port", 9200
+ * ));
+ * 
+ * logger.open("123", (err) => {
+ *     ...
+ * });
+ * 
+ * logger.error("123", ex, "Error occured: %s", ex.message);
+ * logger.debug("123", "Everything is OK.");
+ * 
  */
 export class ElasticSearchLogger extends CachedLogger implements IReferenceable, IOpenable {
     private _connectionResolver: HttpConnectionResolver = new HttpConnectionResolver();
@@ -48,25 +74,16 @@ export class ElasticSearchLogger extends CachedLogger implements IReferenceable,
     private _client: any = null;
 
     /**
-     * Creates a new ElasticSearchLogger object.
+     * Creates a new instance of the logger.
      */
     public constructor() {
         super();
     }
 
     /**
-     * Configures this logger using the given configuration parameters.
+     * Configures component by passing configuration parameters.
      * 
-     * __Configuration parameters:__
-     * - "level" - the LogLevel to set (default is LogLevel.Info);
-     * - "source" - the logger's source;
-     * - __options__
-     *     - "options.interval" - the interval after which the cache should be dumped;
-     *     - "options.max_cache_size" - set a maximum limit for the cache's size.
-     * 
-     * @param config    the configuration parameters to configure this logger with.
-     * 
-     * @see [[https://rawgit.com/pip-services-node/pip-services-commons-node/master/doc/api/classes/config.configparams.html ConfigParams]] (in the PipServices "Commons" package)
+     * @param config    configuration parameters to be set.
      */
     public configure(config: ConfigParams): void {
         super.configure(config);
@@ -82,17 +99,9 @@ export class ElasticSearchLogger extends CachedLogger implements IReferenceable,
     }
 
     /**
-     * Sets this logger's source and connection resolver by setting references to a 
-     * context and a discovery service.
-     * 
-     * __References:__
-     * - context-info: <code>"\*:context-info:\*:\*:1.0"</code>;
-     * - connection resolver's discovery service: <code>"\*:discovery:\*:\*:1.0"</code>.
-     * 
-     * @param references    an IReferences object, containing references to a context-info 
-     *                      and a discovery service.
-     * 
-     * @see [[https://rawgit.com/pip-services-node/pip-services-commons-node/master/doc/api/interfaces/refer.ireferences.html IReferences]] (in the PipServices "Commons" package)
+	 * Sets references to dependent components.
+	 * 
+	 * @param references 	references to locate the component dependencies. 
      */
     public setReferences(references: IReferences): void {
         super.setReferences(references);
@@ -100,19 +109,19 @@ export class ElasticSearchLogger extends CachedLogger implements IReferenceable,
     }
 
     /**
-     * @returns     whether or not this logger is currently open.
+	 * Checks if the component is opened.
+	 * 
+	 * @returns true if the component has been opened and false otherwise.
      */
     public isOpen(): boolean {
         return this._timer != null;
     }
 
     /**
-     * Opens this ElasticSearchLogger by creating a new ElasticSearch client and starting a 
-     * "dump" timer, if a dump interval was set during configuration.
-     *      
-     * @param correlationId     unique business transaction id to trace calls across components.
-     * @param callback          the function to call once the logger has been opened.
-     *                          Will be called with an error, if one is raised.
+	 * Opens the component.
+	 * 
+	 * @param correlationId 	(optional) transaction id to trace execution through call chain.
+     * @param callback 			callback function that receives error or null no errors occured.
      */
     public open(correlationId: string, callback: (err: any) => void): void {
         if (this.isOpen()) {
@@ -152,14 +161,10 @@ export class ElasticSearchLogger extends CachedLogger implements IReferenceable,
     }
 
     /**
-     * Closes this ElasticSearchLogger by saving and resetting its cache and freeing its 
-     * timer and client.
-     * 
-     * @param correlationId     unique business transaction id to trace calls across components.
-     * @param callback          the function to call once the logger has been closed.
-     *                          Will be called with an error, if one is raised.
-     * 
-     * @see [[save]]
+	 * Closes component and frees used resources.
+	 * 
+	 * @param correlationId 	(optional) transaction id to trace execution through call chain.
+     * @param callback 			callback function that receives error or null no errors occured.
      */
     public close(correlationId: string, callback: (err: any) => void): void {
         this.save(this._cache, (err) => {
@@ -249,14 +254,10 @@ export class ElasticSearchLogger extends CachedLogger implements IReferenceable,
     }
 
     /**
-     * Used to save this ElasticSearchLogger's cached messages. Saves them using
-     * the ElasticSearch's <code>bulk</code> API (type is set to <code>"log_message"</code>).
+     * Saves log messages from the cache.
      * 
-     * @param messages  the messages to save.
-     * @param callback  the function to call once the saving process has been 
-     *                  completed. Will be called with an error, if one is raised.
-     * 
-     * @see ElasticSearch's [[https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-bulk.html bulk API]]
+     * @param messages  a list with log messages
+     * @param callback  callback function that receives error or null for success.
      */
     protected save(messages: LogMessage[], callback: (err: any) => void): void {
         if (!this.isOpen()  && messages.length == 0) {

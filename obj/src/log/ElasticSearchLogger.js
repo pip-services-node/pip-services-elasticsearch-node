@@ -1,11 +1,63 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+/** @module log */
+/** @hidden */
 let async = require('async');
 const pip_services_commons_node_1 = require("pip-services-commons-node");
 const pip_services_rpc_node_1 = require("pip-services-rpc-node");
 const pip_services_commons_node_2 = require("pip-services-commons-node");
 const pip_services_components_node_1 = require("pip-services-components-node");
+/**
+ * Logger that dumps execution logs to ElasticSearch service.
+ *
+ * Authentication is not supported in this version.
+ *
+ * ### Configuration parameters ###
+ *
+ * level:             maximum log level to capture
+ * source:            source (context) name
+ * connection(s):
+ *   discovery_key:         (optional) a key to retrieve the connection from [[IDiscovery]]
+ *   protocol:              connection protocol: http or https
+ *   host:                  host name or IP address
+ *   port:                  port number
+ *   uri:                   resource URI or connection string with all parameters in it
+ * options:
+ *   interval:        interval in milliseconds to save log messages (default: 10 seconds)
+ *   max_cache_size:  maximum number of messages stored in this cache (default: 100)
+ *   index:           ElasticSearch index name (default: "log")
+ *   daily:           true to create a new index every day by adding date suffix to the index name (default: false)
+ *   reconnect:       reconnect timeout in milliseconds (default: 60 sec)
+ *   timeout:         invocation timeout in milliseconds (default: 30 sec)
+ *   max_retries:     maximum number of retries (default: 3)
+ *   index_message:   true to enable indexing for message object (default: false)
+ *
+ * ### References ###
+ *
+ * - *:context-info:*:*:1.0     (optional) [[ContextInfo]] to detect the context id and specify counters source
+ * - *:discovery:*:*:1.0        (optional) IDiscovery services to resolve connection
+ *
+ * ### Example ###
+ *
+ * let logger = new ConsoleLogger();
+ * logger.configure(ConfigParams.fromTuples(
+ *     "connection.protocol", "http",
+ *     "connection.host", "localhost",
+ *     "connection.port", 9200
+ * ));
+ *
+ * logger.open("123", (err) => {
+ *     ...
+ * });
+ *
+ * logger.error("123", ex, "Error occured: %s", ex.message);
+ * logger.debug("123", "Everything is OK.");
+ *
+ */
 class ElasticSearchLogger extends pip_services_components_node_1.CachedLogger {
+    /**
+     * Creates a new instance of the logger.
+     */
     constructor() {
         super();
         this._connectionResolver = new pip_services_rpc_node_1.HttpConnectionResolver();
@@ -17,6 +69,11 @@ class ElasticSearchLogger extends pip_services_components_node_1.CachedLogger {
         this._indexMessage = false;
         this._client = null;
     }
+    /**
+     * Configures component by passing configuration parameters.
+     *
+     * @param config    configuration parameters to be set.
+     */
     configure(config) {
         super.configure(config);
         this._connectionResolver.configure(config);
@@ -27,13 +84,29 @@ class ElasticSearchLogger extends pip_services_components_node_1.CachedLogger {
         this._maxRetries = config.getAsIntegerWithDefault('options.max_retries', this._maxRetries);
         this._indexMessage = config.getAsBooleanWithDefault('options.index_message', this._indexMessage);
     }
+    /**
+     * Sets references to dependent components.
+     *
+     * @param references 	references to locate the component dependencies.
+     */
     setReferences(references) {
         super.setReferences(references);
         this._connectionResolver.setReferences(references);
     }
+    /**
+     * Checks if the component is opened.
+     *
+     * @returns true if the component has been opened and false otherwise.
+     */
     isOpen() {
         return this._timer != null;
     }
+    /**
+     * Opens the component.
+     *
+     * @param correlationId 	(optional) transaction id to trace execution through call chain.
+     * @param callback 			callback function that receives error or null no errors occured.
+     */
     open(correlationId, callback) {
         if (this.isOpen()) {
             callback(null);
@@ -63,6 +136,12 @@ class ElasticSearchLogger extends pip_services_components_node_1.CachedLogger {
             });
         });
     }
+    /**
+     * Closes component and frees used resources.
+     *
+     * @param correlationId 	(optional) transaction id to trace execution through call chain.
+     * @param callback 			callback function that receives error or null no errors occured.
+     */
     close(correlationId, callback) {
         this.save(this._cache, (err) => {
             if (this._timer)
@@ -137,6 +216,12 @@ class ElasticSearchLogger extends pip_services_components_node_1.CachedLogger {
             });
         });
     }
+    /**
+     * Saves log messages from the cache.
+     *
+     * @param messages  a list with log messages
+     * @param callback  callback function that receives error or null for success.
+     */
     save(messages, callback) {
         if (!this.isOpen() && messages.length == 0) {
             if (callback)

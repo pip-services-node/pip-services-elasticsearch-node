@@ -4,6 +4,53 @@ import { IReferenceable } from 'pip-services-commons-node';
 import { IOpenable } from 'pip-services-commons-node';
 import { CachedLogger } from 'pip-services-components-node';
 import { LogMessage } from 'pip-services-components-node';
+/**
+ * Logger that dumps execution logs to ElasticSearch service.
+ *
+ * Authentication is not supported in this version.
+ *
+ * ### Configuration parameters ###
+ *
+ * level:             maximum log level to capture
+ * source:            source (context) name
+ * connection(s):
+ *   discovery_key:         (optional) a key to retrieve the connection from [[IDiscovery]]
+ *   protocol:              connection protocol: http or https
+ *   host:                  host name or IP address
+ *   port:                  port number
+ *   uri:                   resource URI or connection string with all parameters in it
+ * options:
+ *   interval:        interval in milliseconds to save log messages (default: 10 seconds)
+ *   max_cache_size:  maximum number of messages stored in this cache (default: 100)
+ *   index:           ElasticSearch index name (default: "log")
+ *   daily:           true to create a new index every day by adding date suffix to the index name (default: false)
+ *   reconnect:       reconnect timeout in milliseconds (default: 60 sec)
+ *   timeout:         invocation timeout in milliseconds (default: 30 sec)
+ *   max_retries:     maximum number of retries (default: 3)
+ *   index_message:   true to enable indexing for message object (default: false)
+ *
+ * ### References ###
+ *
+ * - *:context-info:*:*:1.0     (optional) [[ContextInfo]] to detect the context id and specify counters source
+ * - *:discovery:*:*:1.0        (optional) IDiscovery services to resolve connection
+ *
+ * ### Example ###
+ *
+ * let logger = new ConsoleLogger();
+ * logger.configure(ConfigParams.fromTuples(
+ *     "connection.protocol", "http",
+ *     "connection.host", "localhost",
+ *     "connection.port", 9200
+ * ));
+ *
+ * logger.open("123", (err) => {
+ *     ...
+ * });
+ *
+ * logger.error("123", ex, "Error occured: %s", ex.message);
+ * logger.debug("123", "Everything is OK.");
+ *
+ */
 export declare class ElasticSearchLogger extends CachedLogger implements IReferenceable, IOpenable {
     private _connectionResolver;
     private _timer;
@@ -15,13 +62,49 @@ export declare class ElasticSearchLogger extends CachedLogger implements IRefere
     private _maxRetries;
     private _indexMessage;
     private _client;
+    /**
+     * Creates a new instance of the logger.
+     */
     constructor();
+    /**
+     * Configures component by passing configuration parameters.
+     *
+     * @param config    configuration parameters to be set.
+     */
     configure(config: ConfigParams): void;
+    /**
+     * Sets references to dependent components.
+     *
+     * @param references 	references to locate the component dependencies.
+     */
     setReferences(references: IReferences): void;
+    /**
+     * Checks if the component is opened.
+     *
+     * @returns true if the component has been opened and false otherwise.
+     */
     isOpen(): boolean;
+    /**
+     * Opens the component.
+     *
+     * @param correlationId 	(optional) transaction id to trace execution through call chain.
+     * @param callback 			callback function that receives error or null no errors occured.
+     */
     open(correlationId: string, callback: (err: any) => void): void;
+    /**
+     * Closes component and frees used resources.
+     *
+     * @param correlationId 	(optional) transaction id to trace execution through call chain.
+     * @param callback 			callback function that receives error or null no errors occured.
+     */
     close(correlationId: string, callback: (err: any) => void): void;
     private getCurrentIndex;
     private createIndexIfNeeded;
+    /**
+     * Saves log messages from the cache.
+     *
+     * @param messages  a list with log messages
+     * @param callback  callback function that receives error or null for success.
+     */
     protected save(messages: LogMessage[], callback: (err: any) => void): void;
 }
