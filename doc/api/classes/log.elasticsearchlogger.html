@@ -70,26 +70,57 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Microservice that allows usage of ElasticSearch for finding items in a log.</p>
+						<p>Logger that dumps execution logs to ElasticSearch service.</p>
 					</div>
+					<p>ElasticSearch is a popular search index. It is often used
+						to store and index execution logs by itself or as a part of
+					ELK (ElasticSearch - Logstash - Kibana) stack.</p>
+					<p>Authentication is not supported in this version.</p>
 					<h3 id="configuration-parameters">Configuration parameters</h3>
-					<p>Parameters to pass to the <a href="log.elasticsearchlogger.html#configure">configure</a> method for component configuration:</p>
 					<ul>
-						<li>&quot;level&quot; - the LogLevel to set (default is LogLevel.Info);</li>
-						<li>&quot;source&quot; - the logger&#39;s source;</li>
-						<li><strong>options</strong><ul>
-								<li>&quot;options.interval&quot; - the interval after which the cache should be dumped;</li>
-								<li>&quot;options.max_cache_size&quot; - set a maximum limit for the cache&#39;s size.</li>
+						<li>level:             maximum log level to capture</li>
+						<li>source:            source (context) name</li>
+						<li>connection(s):<ul>
+								<li>discovery_key:         (optional) a key to retrieve the connection from [[IDiscovery]]</li>
+								<li>protocol:              connection protocol: http or https</li>
+								<li>host:                  host name or IP address</li>
+								<li>port:                  port number</li>
+								<li>uri:                   resource URI or connection string with all parameters in it</li>
+							</ul>
+						</li>
+						<li>options:<ul>
+								<li>interval:        interval in milliseconds to save log messages (default: 10 seconds)</li>
+								<li>max_cache_size:  maximum number of messages stored in this cache (default: 100)</li>
+								<li>index:           ElasticSearch index name (default: &quot;log&quot;)</li>
+								<li>daily:           true to create a new index every day by adding date suffix to the index<pre><code>             <span class="hljs-built_in">name</span> (<span class="hljs-keyword">default</span>: <span class="hljs-literal">false</span>)
+</code></pre></li>
+								<li>reconnect:       reconnect timeout in milliseconds (default: 60 sec)</li>
+								<li>timeout:         invocation timeout in milliseconds (default: 30 sec)</li>
+								<li>max_retries:     maximum number of retries (default: 3)</li>
+								<li>index_message:   true to enable indexing for message object (default: false)</li>
 							</ul>
 						</li>
 					</ul>
 					<h3 id="references">References</h3>
-					<p>A context and a discovery service can be referenced by passing the
-					following references to the object&#39;s <a href="log.elasticsearchlogger.html#setreferences">setReferences</a> method:</p>
 					<ul>
-						<li>context-info: <code>&quot;*:context-info:*:*:1.0&quot;</code>;</li>
-						<li>connection resolver&#39;s discovery service: <code>&quot;*:discovery:*:*:1.0&quot;</code>.</li>
+						<li><code>*:context-info:*:*:1.0</code>      (optional) [[ContextInfo]] to detect the context id and specify counters source</li>
+						<li><code>*:discovery:*:*:1.0</code>         (optional) IDiscovery services to resolve connection</li>
 					</ul>
+					<h3 id="example">Example</h3>
+					<pre><code><span class="hljs-keyword">let</span> logger = <span class="hljs-keyword">new</span> ElasticSearchLogger();
+logger.configure(ConfigParams.fromTuples(
+    <span class="hljs-string">"connection.protocol"</span>, <span class="hljs-string">"http"</span>,
+    <span class="hljs-string">"connection.host"</span>, <span class="hljs-string">"localhost"</span>,
+    <span class="hljs-string">"connection.port"</span>, <span class="hljs-number">9200</span>
+));
+
+logger.<span class="hljs-keyword">open</span>(<span class="hljs-string">"123"</span>, (err) =&gt; {
+    ...
+});
+
+logger.<span class="hljs-built_in">error</span>(<span class="hljs-string">"123"</span>, ex, <span class="hljs-string">"Error occured: %s"</span>, ex.message);
+logger.<span class="hljs-keyword">debug</span>(<span class="hljs-string">"123"</span>, <span class="hljs-string">"Everything is OK."</span>);
+</code></pre>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
@@ -181,12 +212,12 @@
 							<aside class="tsd-sources">
 								<p>Overrides CachedLogger.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/7fed7f2/src/log/ElasticSearchLogger.ts#L48">log/ElasticSearchLogger.ts:48</a></li>
+									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/23240b5/src/log/ElasticSearchLogger.ts#L78">log/ElasticSearchLogger.ts:78</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Creates a new ElasticSearchLogger object.</p>
+									<p>Creates a new instance of the logger.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="log.elasticsearchlogger.html" class="tsd-signature-type">ElasticSearchLogger</a></h4>
@@ -309,33 +340,26 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/7fed7f2/src/log/ElasticSearchLogger.ts#L164">log/ElasticSearchLogger.ts:164</a></li>
+									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/23240b5/src/log/ElasticSearchLogger.ts#L173">log/ElasticSearchLogger.ts:173</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Closes this ElasticSearchLogger by saving and resetting its cache and freeing its
-									timer and client.</p>
+									<p>Closes component and frees used resources.</p>
 								</div>
-								<dl class="tsd-comment-tags">
-									<dt>see</dt>
-									<dd><p><a href="log.elasticsearchlogger.html#save">save</a></p>
-									</dd>
-								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>correlationId: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>unique business transaction id to trace calls across components.</p>
+										<p>(optional) transaction id to trace execution through call chain.</p>
 									</div>
 								</li>
 								<li>
 									<h5>callback: <span class="tsd-signature-type">function</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>the function to call once the logger has been closed.
-										Will be called with an error, if one is raised.</p>
+										<p>callback function that receives error or null no errors occured.</p>
 									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
@@ -406,35 +430,20 @@
 							<aside class="tsd-sources">
 								<p>Overrides CachedLogger.configure</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/7fed7f2/src/log/ElasticSearchLogger.ts#L71">log/ElasticSearchLogger.ts:71</a></li>
+									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/23240b5/src/log/ElasticSearchLogger.ts#L92">log/ElasticSearchLogger.ts:92</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Configures this logger using the given configuration parameters.</p>
+									<p>Configures component by passing configuration parameters.</p>
 								</div>
-								<p><strong>Configuration parameters:</strong></p>
-								<ul>
-									<li>&quot;level&quot; - the LogLevel to set (default is LogLevel.Info);</li>
-									<li>&quot;source&quot; - the logger&#39;s source;</li>
-									<li><strong>options</strong><ul>
-											<li>&quot;options.interval&quot; - the interval after which the cache should be dumped;</li>
-											<li>&quot;options.max_cache_size&quot; - set a maximum limit for the cache&#39;s size.</li>
-										</ul>
-									</li>
-								</ul>
-								<dl class="tsd-comment-tags">
-									<dt>see</dt>
-									<dd><p><a href="https://rawgit.com/pip-services-node/pip-services-commons-node/master/doc/api/classes/config.configparams.html" class="external">ConfigParams</a> (in the PipServices &quot;Commons&quot; package)</p>
-									</dd>
-								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>config: <span class="tsd-signature-type">ConfigParams</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>the configuration parameters to configure this logger with.</p>
+										<p>configuration parameters to be set.</p>
 									</div>
 								</li>
 							</ul>
@@ -823,13 +832,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/7fed7f2/src/log/ElasticSearchLogger.ts#L105">log/ElasticSearchLogger.ts:105</a></li>
+									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/23240b5/src/log/ElasticSearchLogger.ts#L120">log/ElasticSearchLogger.ts:120</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Checks if the component is opened.</p>
+								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-							<p>whether or not this logger is currently open.</p>
+							<p>true if the component has been opened and false otherwise.</p>
 						</li>
 					</ul>
 				</section>
@@ -905,13 +917,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/7fed7f2/src/log/ElasticSearchLogger.ts#L117">log/ElasticSearchLogger.ts:117</a></li>
+									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/23240b5/src/log/ElasticSearchLogger.ts#L130">log/ElasticSearchLogger.ts:130</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Opens this ElasticSearchLogger by creating a new ElasticSearch client and starting a
-									&quot;dump&quot; timer, if a dump interval was set during configuration.</p>
+									<p>Opens the component.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -919,14 +930,13 @@
 								<li>
 									<h5>correlationId: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>unique business transaction id to trace calls across components.</p>
+										<p>(optional) transaction id to trace execution through call chain.</p>
 									</div>
 								</li>
 								<li>
 									<h5>callback: <span class="tsd-signature-type">function</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>the function to call once the logger has been opened.
-										Will be called with an error, if one is raised.</p>
+										<p>callback function that receives error or null no errors occured.</p>
 									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
@@ -963,33 +973,26 @@
 							<aside class="tsd-sources">
 								<p>Overrides CachedLogger.save</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/7fed7f2/src/log/ElasticSearchLogger.ts#L261">log/ElasticSearchLogger.ts:261</a></li>
+									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/23240b5/src/log/ElasticSearchLogger.ts#L266">log/ElasticSearchLogger.ts:266</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Used to save this ElasticSearchLogger&#39;s cached messages. Saves them using
-									the ElasticSearch&#39;s <code>bulk</code> API (type is set to <code>&quot;log_message&quot;</code>).</p>
+									<p>Saves log messages from the cache.</p>
 								</div>
-								<dl class="tsd-comment-tags">
-									<dt>see</dt>
-									<dd><p>ElasticSearch&#39;s <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-bulk.html" class="external">bulk API</a></p>
-									</dd>
-								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>messages: <span class="tsd-signature-type">LogMessage</span><span class="tsd-signature-symbol">[]</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>the messages to save.</p>
+										<p>a list with log messages</p>
 									</div>
 								</li>
 								<li>
 									<h5>callback: <span class="tsd-signature-type">function</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>the function to call once the saving process has been
-										completed. Will be called with an error, if one is raised.</p>
+										<p>callback function that receives error or null for success.</p>
 									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
@@ -1063,32 +1066,20 @@
 							<aside class="tsd-sources">
 								<p>Overrides Logger.setReferences</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/7fed7f2/src/log/ElasticSearchLogger.ts#L97">log/ElasticSearchLogger.ts:97</a></li>
+									<li>Defined in <a href="https://github.com/pip-services-node/pip-services-elasticsearch-node/blob/23240b5/src/log/ElasticSearchLogger.ts#L110">log/ElasticSearchLogger.ts:110</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Sets this logger&#39;s source and connection resolver by setting references to a
-									context and a discovery service.</p>
+									<p>Sets references to dependent components.</p>
 								</div>
-								<p><strong>References:</strong></p>
-								<ul>
-									<li>context-info: <code>&quot;*:context-info:*:*:1.0&quot;</code>;</li>
-									<li>connection resolver&#39;s discovery service: <code>&quot;*:discovery:*:*:1.0&quot;</code>.</li>
-								</ul>
-								<dl class="tsd-comment-tags">
-									<dt>see</dt>
-									<dd><p><a href="https://rawgit.com/pip-services-node/pip-services-commons-node/master/doc/api/interfaces/refer.ireferences.html" class="external">IReferences</a> (in the PipServices &quot;Commons&quot; package)</p>
-									</dd>
-								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>references: <span class="tsd-signature-type">IReferences</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>an IReferences object, containing references to a context-info
-										and a discovery service.</p>
+										<p>references to locate the component dependencies.</p>
 									</div>
 								</li>
 							</ul>
