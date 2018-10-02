@@ -26,7 +26,7 @@ import { LogMessage } from 'pip-services-components-node';
  * - level:             maximum log level to capture
  * - source:            source (context) name
  * - connection(s):           
- *     - discovery_key:         (optional) a key to retrieve the connection from [[IDiscovery]]
+ *     - discovery_key:         (optional) a key to retrieve the connection from [[https://rawgit.com/pip-services-node/pip-services-components-node/master/doc/api/interfaces/connect.idiscovery.html IDiscovery]]
  *     - protocol:              connection protocol: http or https
  *     - host:                  host name or IP address
  *     - port:                  port number
@@ -44,8 +44,8 @@ import { LogMessage } from 'pip-services-components-node';
  * 
  * ### References ###
  * 
- * - <code>\*:context-info:\*:\*:1.0</code>      (optional) [[ContextInfo]] to detect the context id and specify counters source
- * - <code>\*:discovery:\*:\*:1.0</code>         (optional) IDiscovery services to resolve connection
+ * - <code>\*:context-info:\*:\*:1.0</code>      (optional) [[https://rawgit.com/pip-services-node/pip-services-components-node/master/doc/api/classes/info.contextinfo.html ContextInfo]] to detect the context id and specify counters source
+ * - <code>\*:discovery:\*:\*:1.0</code>         (optional) [[https://rawgit.com/pip-services-node/pip-services-components-node/master/doc/api/interfaces/connect.idiscovery.html IDiscovery]] services to resolve connection
  * 
  * ### Example ###
  * 
